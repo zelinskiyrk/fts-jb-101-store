@@ -8,5 +8,5 @@ import lombok.Setter;
 @Setter
 @ApiModel(value = "AddCityRequest", description = "Model for add city")
 public class AddCityRequest {
-    private String city;
+    private String cityName;
 }

@@ -13,5 +13,5 @@ import lombok.experimental.SuperBuilder;
 @ApiModel(value = "CityResponse", description = "City data (for search and List)")
 public class CityResponse {
     protected String id;
-    protected String city;
+    protected String cityName;
 }

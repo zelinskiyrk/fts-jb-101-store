@@ -21,11 +21,11 @@ public class CityApiService {
     private final MongoTemplate mongoTemplate;
 
     public CityDoc addCity(AddCityRequest request) throws CityExistException {
-        if (cityRepository.findCityDocByCityName(request.getCity()).isPresent() == true){
+        if (cityRepository.findCityDocByCityName(request.getCityName()).isPresent() == true){
             throw new CityExistException();
         }
         CityDoc cityDoc = new CityDoc();
-        cityDoc.setCityName(request.getCity());
+        cityDoc.setCityName(request.getCityName());
         cityDoc = cityRepository.save(cityDoc);
         return cityDoc;
     }
@@ -45,7 +45,7 @@ public class CityApiService {
         }
 
         CityDoc cityDoc = cityDocOptional.get();
-        cityDoc.setCityName(request.getCity());
+        cityDoc.setCityName(request.getCityName());
         cityRepository.save(cityDoc);
         return cityDoc;
     }

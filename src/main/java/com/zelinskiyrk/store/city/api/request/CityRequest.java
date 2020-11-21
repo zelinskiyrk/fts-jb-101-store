@@ -10,5 +10,5 @@ import org.bson.types.ObjectId;
 @ApiModel(value = "CityRequest", description = "Model for update city")
 public class CityRequest {
     private ObjectId id;
-    private String city;
+    private String cityName;
 }
