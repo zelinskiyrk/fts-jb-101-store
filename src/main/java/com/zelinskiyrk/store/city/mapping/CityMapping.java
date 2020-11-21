@@ -1,6 +1,7 @@
 package com.zelinskiyrk.store.city.mapping;
 
 import com.zelinskiyrk.store.base.mapping.BaseMapping;
+import com.zelinskiyrk.store.city.api.request.CityRequest;
 import com.zelinskiyrk.store.city.api.response.CityResponse;
 import com.zelinskiyrk.store.city.model.CityDoc;
 import lombok.Getter;
@@ -10,13 +11,30 @@ import java.util.stream.Collectors;
 
 @Getter
 public class CityMapping {
+
+    public static class RequestMapping extends BaseMapping<CityRequest, CityDoc> {
+
+        @Override
+        public CityDoc convert(CityRequest cityRequest){
+            return CityDoc.builder()
+                    .id(cityRequest.getId())
+                    .cityName(cityRequest.getCityName())
+                    .build();
+        }
+
+        @Override
+        public CityRequest unmapping(CityDoc cityDoc) {
+            throw new RuntimeException("don't use this");
+        }
+    }
+
     public static class ResponseMapping extends BaseMapping<CityDoc, CityResponse> {
 
         @Override
         public CityResponse convert(CityDoc cityDoc){
             return CityResponse.builder()
                     .id(cityDoc.getId().toString())
-                    .city(cityDoc.getCityName())
+                    .cityName(cityDoc.getCityName())
                     .build();
         }
 
@@ -40,6 +58,7 @@ public class CityMapping {
         }
     }
 
+    private final RequestMapping request = new RequestMapping();
     private final ResponseMapping response = new ResponseMapping();
     private final SearchMapping search = new SearchMapping();
 
