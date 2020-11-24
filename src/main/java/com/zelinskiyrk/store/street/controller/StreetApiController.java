@@ -2,7 +2,6 @@ package com.zelinskiyrk.store.street.controller;
 
 import com.zelinskiyrk.store.base.api.response.OkResponse;
 import com.zelinskiyrk.store.city.exception.CityNotExistException;
-import com.zelinskiyrk.store.street.api.request.AddStreetRequest;
 import com.zelinskiyrk.store.street.api.request.StreetRequest;
 import com.zelinskiyrk.store.street.api.response.StreetResponse;
 import com.zelinskiyrk.store.street.exception.StreetExistException;
