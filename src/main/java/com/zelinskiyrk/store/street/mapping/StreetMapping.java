@@ -1,5 +1,6 @@
 package com.zelinskiyrk.store.street.mapping;
 
+import com.zelinskiyrk.store.base.api.response.SearchResponse;
 import com.zelinskiyrk.store.base.mapping.BaseMapping;
 import com.zelinskiyrk.store.street.api.request.StreetRequest;
 import com.zelinskiyrk.store.street.api.response.StreetResponse;
@@ -46,16 +47,19 @@ public class StreetMapping {
         }
     }
 
-    public static class SearchMapping extends BaseMapping<List<StreetDoc>, List<StreetResponse>>{
+    public static class SearchMapping extends BaseMapping<SearchResponse<StreetDoc>, SearchResponse<StreetResponse>>{
         private ResponseMapping responseMapping = new ResponseMapping();
 
         @Override
-        public List<StreetResponse> convert(List<StreetDoc> streetDocs) {
-            return streetDocs.stream().map(responseMapping::convert).collect(Collectors.toList());
+        public SearchResponse<StreetResponse> convert(SearchResponse<StreetDoc> searchResponse) {
+            return SearchResponse.of(
+                    searchResponse.getList().stream().map(responseMapping::convert).collect(Collectors.toList()),
+                    searchResponse.getCount()
+            );
         }
 
         @Override
-        public List<StreetDoc> unmapping(List<StreetResponse> streetResponses) {
+        public SearchResponse<StreetDoc> unmapping(SearchResponse<StreetResponse> streetResponses) {
             throw new RuntimeException("don't use this");
         }
     }

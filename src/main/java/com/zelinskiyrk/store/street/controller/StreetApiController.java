@@ -1,8 +1,9 @@
 package com.zelinskiyrk.store.street.controller;
 
+import com.zelinskiyrk.store.base.api.request.SearchRequest;
 import com.zelinskiyrk.store.base.api.response.OkResponse;
+import com.zelinskiyrk.store.base.api.response.SearchResponse;
 import com.zelinskiyrk.store.city.exception.CityNotExistException;
-import com.zelinskiyrk.store.street.api.request.AddStreetRequest;
 import com.zelinskiyrk.store.street.api.request.StreetRequest;
 import com.zelinskiyrk.store.street.api.response.StreetResponse;
 import com.zelinskiyrk.store.street.exception.StreetExistException;
@@ -17,7 +18,6 @@ import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -55,9 +55,11 @@ public class StreetApiController {
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Success")
     })
-    public OkResponse<List<StreetResponse>> search(){
+    public OkResponse<SearchResponse<StreetResponse>> search(
+            @ModelAttribute SearchRequest request
+            ){
         return OkResponse.of(StreetMapping.getInstance().getSearch().convert(
-                streetApiService.search()
+                streetApiService.search(request)
         ));
     }
 
