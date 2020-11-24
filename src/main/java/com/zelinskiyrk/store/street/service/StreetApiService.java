@@ -26,12 +26,17 @@ public class StreetApiService {
 
     public StreetDoc addStreet(StreetRequest request)
             throws StreetExistException, CityNotExistException {
-        if (streetRepository.findByStreetName(request.getStreetName()).isPresent() == true){
+//        if (streetRepository.findByStreetName(request.getStreetName()).isPresent() == true){
+//            throw new StreetExistException();
+//        }
+        if (streetRepository.findByCityIdAndStreetName(request.getCityId(), request.getStreetName()).isPresent() == true){
             throw new StreetExistException();
         }
+
         if (cityRepository.findById(request.getCityId()).isEmpty()){
             throw new CityNotExistException();
         }
+
         StreetDoc streetDoc = StreetMapping.getInstance().getRequest().convert(request);
         streetRepository.save(streetDoc);
         return streetDoc;
