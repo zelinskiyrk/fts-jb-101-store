@@ -3,6 +3,7 @@ package com.zelinskiyrk.store.base.controller;
 import com.zelinskiyrk.store.base.api.response.ErrorResponse;
 import com.zelinskiyrk.store.city.exception.CityExistException;
 import com.zelinskiyrk.store.city.exception.CityNotExistException;
+import com.zelinskiyrk.store.street.exception.StreetExistException;
 import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,6 +31,11 @@ public class HandleApiExceptions extends ResponseEntityExceptionHandler {
     @ExceptionHandler(CityNotExistException.class)
     public ResponseEntity<Object> CityNotExistException(CityNotExistException ex, WebRequest request){
         return buildResponseEntity(ErrorResponse.of("CityNotExistException", HttpStatus.BAD_REQUEST));
+    }
+
+    @ExceptionHandler(StreetExistException.class)
+    public ResponseEntity<Object> StreetExistException(StreetExistException ex, WebRequest request){
+        return buildResponseEntity(ErrorResponse.of("StreetExistException", HttpStatus.BAD_REQUEST));
     }
 
     @ExceptionHandler(Exception.class)
