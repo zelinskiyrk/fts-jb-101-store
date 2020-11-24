@@ -1,8 +1,9 @@
 package com.zelinskiyrk.store.street.service;
 
+import com.zelinskiyrk.store.base.api.request.SearchRequest;
+import com.zelinskiyrk.store.base.api.response.SearchResponse;
 import com.zelinskiyrk.store.city.exception.CityNotExistException;
 import com.zelinskiyrk.store.city.repository.CityRepository;
-import com.zelinskiyrk.store.street.api.request.AddStreetRequest;
 import com.zelinskiyrk.store.street.api.request.StreetRequest;
 import com.zelinskiyrk.store.street.exception.StreetExistException;
 import com.zelinskiyrk.store.street.exception.StreetNotExistException;
@@ -12,6 +13,8 @@ import com.zelinskiyrk.store.street.repository.StreetRepository;
 import lombok.RequiredArgsConstructor;
 import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,9 +29,7 @@ public class StreetApiService {
 
     public StreetDoc addStreet(StreetRequest request)
             throws StreetExistException, CityNotExistException {
-//        if (streetRepository.findByStreetName(request.getStreetName()).isPresent() == true){
-//            throw new StreetExistException();
-//        }
+
         if (streetRepository.findByCityIdAndStreetName(request.getCityId(), request.getStreetName()).isPresent() == true){
             throw new StreetExistException();
         }
@@ -46,8 +47,17 @@ public class StreetApiService {
         return streetRepository.findById(id);
     }
 
-    public List<StreetDoc> search(){
-        return streetRepository.findAll();
+    public SearchResponse<StreetDoc> search(
+            SearchRequest request
+    ){
+        Query query = new Query();
+        if (request.getCityId() != null) {
+            query.addCriteria(Criteria.where("cityId").is(request.getCityId()));
+        }
+        Long count = mongoTemplate.count(query, StreetDoc.class);
+
+        List<StreetDoc> streetDocs = mongoTemplate.find(query, StreetDoc.class);
+        return SearchResponse.of(streetDocs, count);
     }
 
     public StreetDoc update(StreetRequest request) throws StreetNotExistException {
