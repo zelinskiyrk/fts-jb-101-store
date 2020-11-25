@@ -1,4 +1,4 @@
-package com.zelinskiyrk.store.base.api.request;
+package com.zelinskiyrk.store.street.api.request;
 
 import io.swagger.annotations.ApiParam;
 import lombok.Getter;
