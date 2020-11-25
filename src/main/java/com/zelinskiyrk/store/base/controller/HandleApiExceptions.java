@@ -1,6 +1,7 @@
 package com.zelinskiyrk.store.base.controller;
 
 import com.zelinskiyrk.store.base.api.response.ErrorResponse;
+import com.zelinskiyrk.store.category.exception.CategoryExistException;
 import com.zelinskiyrk.store.city.exception.CityExistException;
 import com.zelinskiyrk.store.city.exception.CityNotExistException;
 import com.zelinskiyrk.store.street.exception.StreetExistException;
@@ -36,6 +37,11 @@ public class HandleApiExceptions extends ResponseEntityExceptionHandler {
     @ExceptionHandler(StreetExistException.class)
     public ResponseEntity<Object> StreetExistException(StreetExistException ex, WebRequest request){
         return buildResponseEntity(ErrorResponse.of("StreetExistException", HttpStatus.BAD_REQUEST));
+    }
+
+    @ExceptionHandler(CategoryExistException.class)
+    public ResponseEntity<Object> CategoryExistException(CategoryExistException ex, WebRequest request){
+        return buildResponseEntity(ErrorResponse.of("CategoryExistException", HttpStatus.BAD_REQUEST));
     }
 
     @ExceptionHandler(Exception.class)
