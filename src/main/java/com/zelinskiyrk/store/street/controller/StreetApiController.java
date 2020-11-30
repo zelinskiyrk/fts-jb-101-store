@@ -1,6 +1,6 @@
 package com.zelinskiyrk.store.street.controller;
 
-import com.zelinskiyrk.store.street.api.request.SearchRequest;
+import com.zelinskiyrk.store.street.api.request.StreetSearchRequest;
 import com.zelinskiyrk.store.base.api.response.OkResponse;
 import com.zelinskiyrk.store.base.api.response.SearchResponse;
 import com.zelinskiyrk.store.city.exception.CityNotExistException;
@@ -43,7 +43,7 @@ public class StreetApiController {
             @ApiResponse(code = 404, message = "Street not found")
     })
     public OkResponse<StreetResponse> byId(
-            @ApiParam(value = "User ID")
+            @ApiParam(value = "Street ID")
             @PathVariable ObjectId id) throws ChangeSetPersister.NotFoundException {
         return OkResponse.of(StreetMapping.getInstance().getResponse().convert(
                 streetApiService.findById(id).orElseThrow(ChangeSetPersister.NotFoundException::new)
@@ -56,7 +56,7 @@ public class StreetApiController {
             @ApiResponse(code = 200, message = "Success")
     })
     public OkResponse<SearchResponse<StreetResponse>> search(
-            @ModelAttribute SearchRequest request
+            @ModelAttribute StreetSearchRequest request
             ){
         return OkResponse.of(StreetMapping.getInstance().getSearch().convert(
                 streetApiService.search(request)
@@ -70,7 +70,7 @@ public class StreetApiController {
             @ApiResponse(code = 400, message = "Street ID invalid")
     })
     public OkResponse<StreetResponse> updateById(
-            @ApiParam(value = "User ID")
+            @ApiParam(value = "Street ID")
             @PathVariable String id,
             @RequestBody StreetRequest streetRequest
             ) throws StreetNotExistException {
@@ -85,7 +85,7 @@ public class StreetApiController {
             @ApiResponse(code = 200, message = "Success")
     })
     public OkResponse<String> deleteById(
-            @ApiParam(value = "User ID")
+            @ApiParam(value = "Street ID")
             @PathVariable ObjectId id){
         streetApiService.delete(id);
         return OkResponse.of(HttpStatus.OK.toString());

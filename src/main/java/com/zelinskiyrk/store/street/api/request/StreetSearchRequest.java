@@ -7,7 +7,7 @@ import org.bson.types.ObjectId;
 
 @Getter
 @Setter
-public class SearchRequest {
+public class StreetSearchRequest {
     @ApiParam(name = "cityId", value = "Search streets by city", required = true)
     protected ObjectId cityId = null;
 }

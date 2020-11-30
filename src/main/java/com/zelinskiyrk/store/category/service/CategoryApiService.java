@@ -18,7 +18,6 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class CategoryApiService {
     private final CategoryRepository categoryRepository;
-    private final MongoTemplate mongoTemplate;
 
     public CategoryDoc addCategory(CategoryRequest request)
             throws CategoryExistException {
@@ -38,13 +37,6 @@ public class CategoryApiService {
     }
 
     public List<CategoryDoc> search(){
-//        Query query = new Query();
-//        if (request != null) {
-//            query.addCriteria(Criteria.where("cityId").is(request.getCityId()));
-//        }
-//        Long count = mongoTemplate.count(query, CategoryDoc.class);
-
-//        List<CategoryDoc> categoryDocs = mongoTemplate.find(query, CategoryDoc.class);
         return categoryRepository.findAll();
     }
 

@@ -1,6 +1,5 @@
 package com.zelinskiyrk.store.category.mapping;
 
-import com.zelinskiyrk.store.base.api.response.SearchResponse;
 import com.zelinskiyrk.store.base.mapping.BaseMapping;
 import com.zelinskiyrk.store.category.api.request.CategoryRequest;
 import com.zelinskiyrk.store.category.api.response.CategoryResponse;
