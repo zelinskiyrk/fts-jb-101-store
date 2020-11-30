@@ -1,6 +1,6 @@
 package com.zelinskiyrk.store.street.service;
 
-import com.zelinskiyrk.store.street.api.request.SearchRequest;
+import com.zelinskiyrk.store.street.api.request.StreetSearchRequest;
 import com.zelinskiyrk.store.base.api.response.SearchResponse;
 import com.zelinskiyrk.store.city.exception.CityNotExistException;
 import com.zelinskiyrk.store.city.repository.CityRepository;
@@ -48,7 +48,7 @@ public class StreetApiService {
     }
 
     public SearchResponse<StreetDoc> search(
-            SearchRequest request
+            StreetSearchRequest request
     ){
         Query query = new Query();
         if (request.getCityId() != null) {

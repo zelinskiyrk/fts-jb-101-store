@@ -7,7 +7,7 @@ import org.bson.types.ObjectId;
 
 @Getter
 @Setter
-@ApiModel(value = "StreetRequest", description = "Model for update street")
+@ApiModel(value = "StreetRequest", description = "Model for create & update street")
 public class StreetRequest {
         private ObjectId id;
         private String streetName;

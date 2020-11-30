@@ -18,7 +18,6 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class CityApiService {
     private final CityRepository cityRepository;
-    private final MongoTemplate mongoTemplate;
 
     public CityDoc addCity(AddCityRequest request) throws CityExistException {
         if (cityRepository.findCityDocByCityName(request.getCityName()).isPresent() == true){

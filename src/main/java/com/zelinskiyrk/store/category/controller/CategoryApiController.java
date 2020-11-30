@@ -1,8 +1,6 @@
 package com.zelinskiyrk.store.category.controller;
 
-import com.zelinskiyrk.store.base.api.request.SearchRequest;
 import com.zelinskiyrk.store.base.api.response.OkResponse;
-import com.zelinskiyrk.store.base.api.response.SearchResponse;
 import com.zelinskiyrk.store.category.api.request.CategoryRequest;
 import com.zelinskiyrk.store.category.api.response.CategoryResponse;
 import com.zelinskiyrk.store.category.exception.CategoryExistException;
@@ -32,7 +30,8 @@ public class CategoryApiController {
             @ApiResponse(code = 200, message = "Success"),
             @ApiResponse(code = 400, message = "Category already exist")
     })
-    public OkResponse<CategoryResponse> addCategory(@RequestBody CategoryRequest request) throws CategoryExistException {
+    public OkResponse<CategoryResponse> addCategory(
+            @RequestBody CategoryRequest request) throws CategoryExistException {
         return OkResponse.of(CategoryMapping.getInstance().getResponse().convert(
                 categoryApiService.addCategory(request)));
     }

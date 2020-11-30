@@ -67,7 +67,7 @@ public class CityApiController {
             @ApiResponse(code = 400, message = "City ID invalid")
     })
     public OkResponse<CityResponse> updateById(
-            @ApiParam(value = "User ID")
+            @ApiParam(value = "City ID")
             @PathVariable String id,
             @RequestBody CityRequest cityRequest
             ) throws CityNotExistException {
@@ -82,7 +82,7 @@ public class CityApiController {
             @ApiResponse(code = 200, message = "Success")
     })
     public OkResponse<String> deleteById(
-            @ApiParam(value = "User ID")
+            @ApiParam(value = "City ID")
             @PathVariable ObjectId id){
         cityApiService.delete(id);
         return OkResponse.of(HttpStatus.OK.toString());
