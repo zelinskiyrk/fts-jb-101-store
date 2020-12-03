@@ -10,4 +10,5 @@ import java.util.Optional;
 @Repository
 public interface StreetRepository extends MongoRepository<StreetDoc, ObjectId> {
     public Optional<StreetDoc> findByCityIdAndStreetName(ObjectId cityId, String streetName);
+//    public Optional<StreetDoc> findByStreetNameStartingWith(String streetName);
 }

@@ -1,5 +1,6 @@
 package com.zelinskiyrk.store.street.controller;
 
+import com.zelinskiyrk.store.base.api.request.SearchRequest;
 import com.zelinskiyrk.store.street.api.request.StreetSearchRequest;
 import com.zelinskiyrk.store.base.api.response.OkResponse;
 import com.zelinskiyrk.store.base.api.response.SearchResponse;
