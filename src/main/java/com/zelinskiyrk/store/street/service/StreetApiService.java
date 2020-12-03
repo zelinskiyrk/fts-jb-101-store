@@ -1,5 +1,6 @@
 package com.zelinskiyrk.store.street.service;
 
+import com.zelinskiyrk.store.base.api.request.SearchRequest;
 import com.zelinskiyrk.store.street.api.request.StreetSearchRequest;
 import com.zelinskiyrk.store.base.api.response.SearchResponse;
 import com.zelinskiyrk.store.city.exception.CityNotExistException;
@@ -50,10 +51,18 @@ public class StreetApiService {
     public SearchResponse<StreetDoc> search(
             StreetSearchRequest request
     ){
-        Query query = new Query();
-        if (request.getCityId() != null) {
-            query.addCriteria(Criteria.where("cityId").is(request.getCityId()));
+        Criteria criteria = new Criteria();
+        if (request.getQuery() != null && request.getQuery() != ""){
+            criteria = criteria.andOperator(
+                    Criteria.where("cityId").regex(request.getQuery(), "i"),
+                    Criteria.where("streetName").regex(request.getQuery(), "i")
+            );
         }
+
+        Query query = new Query(criteria);
+//        if (request.getCityId() != null) {
+//            query.addCriteria(Criteria.where("cityId").is(request.getCityId()));
+//        }
         Long count = mongoTemplate.count(query, StreetDoc.class);
 
         List<StreetDoc> streetDocs = mongoTemplate.find(query, StreetDoc.class);
