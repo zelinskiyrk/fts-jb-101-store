@@ -24,8 +24,8 @@ public class ProductDoc {
                 private String productName;
                 private String description;
                 private ArrayList prices;
-                private Integer proteins;
-                private Integer fats;
-                private Integer carbohydrates;
-                private Integer calories;
+                private float proteins;
+                private float fats;
+                private float carbohydrates;
+                private float calories;
 }

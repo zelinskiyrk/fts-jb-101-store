@@ -22,8 +22,8 @@ public class ProductResponse {
                 protected String productName;
                 protected String description;
                 protected ArrayList prices;
-                protected Integer proteins;
-                protected Integer fats;
-                protected Integer carbohydrates;
-                protected Integer calories;
+                protected float proteins;
+                protected float fats;
+                protected float carbohydrates;
+                protected float calories;
 }
