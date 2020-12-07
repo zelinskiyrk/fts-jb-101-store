@@ -1,14 +1,11 @@
 package com.zelinskiyrk.store.basket.mapping;
 
-import com.zelinskiyrk.store.base.api.response.SearchResponse;
 import com.zelinskiyrk.store.base.mapping.BaseMapping;
 import com.zelinskiyrk.store.basket.api.request.BasketRequest;
 import com.zelinskiyrk.store.basket.api.response.BasketResponse;
 import com.zelinskiyrk.store.basket.model.BasketDoc;
-import com.zelinskiyrk.store.product.repository.ProductRepository;
 import lombok.Getter;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -23,12 +20,8 @@ public class BasketMapping {
         @Override
         public BasketDoc convert(BasketRequest basketRequest){
             return BasketDoc.builder()
-                        .id(basketRequest.getId())
-                        .productId(basketRequest.getProductId())
-                        .productQuantity(basketRequest.getProductQuantity())
-                        .orderPrice(basketRequest.getOrderPrice())
-                        .deliveryPrice(basketRequest.getDeliveryPrice())
-                        .totalPrice(basketRequest.getTotalPrice())
+//                        .id(basketRequest.getId())
+//                        .product(basketRequest.getProductId())
                     .build();
         }
 
@@ -43,14 +36,12 @@ public class BasketMapping {
 
         @Override
         public BasketResponse convert(BasketDoc basketDoc){
+            if (basketDoc == null){
+                return null;
+            }
             return BasketResponse.builder()
                         .id(basketDoc.getId().toString())
-                        .product(basketDoc.getProduct())
-                        .productQuantity(basketDoc.getProductQuantity().toString())
-                        .orderPrice(basketDoc.getOrderPrice().toString())
-                        .deliveryPrice(basketDoc.getDeliveryPrice().toString())
-                        .totalPrice(basketDoc.getTotalPrice().toString())
-                        .sessionId(basketDoc.getSessionId())
+                        .product(basketDoc.getProducts())
                     .build();
         }
 

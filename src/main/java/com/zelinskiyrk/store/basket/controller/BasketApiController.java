@@ -17,6 +17,7 @@ import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
@@ -33,9 +34,11 @@ public class BasketApiController {
             @ApiResponse(code = 200, message = "Success"),
             @ApiResponse(code = 400, message = "Basket already exist")
     })
-    public OkResponse<BasketResponse> addBasket(@RequestBody BasketRequest request) throws BasketExistException {
-        return OkResponse.of(BasketMapping.getInstance().getResponse().convert(
-                basketApiService.addBasket(request)));
+    public OkResponse<BasketResponse> addBasket(@RequestBody BasketRequest request, HttpServletRequest servletRequest) throws BasketExistException {
+        return OkResponse.of(
+                BasketMapping.getInstance().getResponse().convert(
+                basketApiService.addBasket(request, servletRequest))
+        );
     }
 
     @GetMapping(BasketApiRoutes.BY_ID)
@@ -65,21 +68,21 @@ public class BasketApiController {
         ));
     }
 
-    @PutMapping(BasketApiRoutes.ADMIN_BY_ID)
-    @ApiOperation(value = "Update basket by ID", notes = "Use this if you want to update basket. You need administrator rights to update a basket.")
-    @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Success"),
-            @ApiResponse(code = 400, message = "Basket ID invalid")
-    })
-    public OkResponse<BasketResponse> updateById(
-            @ApiParam(value = "Basket ID")
-            @PathVariable String id,
-            @RequestBody BasketRequest basketRequest
-            ) throws BasketNotExistException {
-        return OkResponse.of(BasketMapping.getInstance().getResponse().convert(
-                basketApiService.update(basketRequest)
-        ));
-    }
+//    @PutMapping(BasketApiRoutes.ADMIN_BY_ID)
+//    @ApiOperation(value = "Update basket by ID", notes = "Use this if you want to update basket. You need administrator rights to update a basket.")
+//    @ApiResponses(value = {
+//            @ApiResponse(code = 200, message = "Success"),
+//            @ApiResponse(code = 400, message = "Basket ID invalid")
+//    })
+//    public OkResponse<BasketResponse> updateById(
+//            @ApiParam(value = "Basket ID")
+//            @PathVariable String id,
+//            @RequestBody BasketRequest basketRequest
+//            ) throws BasketNotExistException {
+//        return OkResponse.of(BasketMapping.getInstance().getResponse().convert(
+//                basketApiService.update(basketRequest)
+//        ));
+//    }
 
     @DeleteMapping(BasketApiRoutes.ADMIN_BY_ID)
     @ApiOperation(value = "Delete basket by ID", notes = "Use this if you want to delete basket. You need administrator rights to delete a basket.")

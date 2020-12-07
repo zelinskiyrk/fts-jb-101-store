@@ -1,12 +1,13 @@
 package com.zelinskiyrk.store.product.api.request;
 
+import com.zelinskiyrk.store.product.api.CityPriceModel;
 import io.swagger.annotations.ApiModel;
 import lombok.Getter;
 import lombok.Setter;
 import org.bson.types.ObjectId;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+
 
 @Getter
 @Setter
@@ -17,9 +18,9 @@ public class ProductRequest {
                 private ObjectId photoId;
                 private String productName;
                 private String description;
-                private float proteins;
-                private float fats;
-                private float carbohydrates;
-                private float calories;
-                private ArrayList prices = new ArrayList();
+                private Float proteins;
+                private Float fats;
+                private Float carbohydrates;
+                private Float calories;
+                private ArrayList<CityPriceModel> prices = new ArrayList<CityPriceModel>();
 }

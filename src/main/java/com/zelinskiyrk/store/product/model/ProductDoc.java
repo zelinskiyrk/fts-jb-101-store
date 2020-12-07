@@ -7,6 +7,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 @Document
 @Getter
@@ -23,7 +24,7 @@ public class ProductDoc {
                 private ObjectId photoId;
                 private String productName;
                 private String description;
-                private ArrayList prices;
+                private List<CityPriceDoc> prices;
                 private float proteins;
                 private float fats;
                 private float carbohydrates;

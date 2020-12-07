@@ -9,6 +9,7 @@ import lombok.experimental.SuperBuilder;
 import org.bson.types.ObjectId;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Getter
@@ -18,7 +19,7 @@ import java.util.Optional;
 @ApiModel(value = "BasketResponse", description = "Basket data (for search and List)")
 public class BasketResponse {
                 protected String id;
-                private ArrayList product;
+                private List product;
                 protected String productQuantity;
                 protected String orderPrice;
                 protected String deliveryPrice;

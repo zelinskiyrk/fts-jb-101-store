@@ -7,6 +7,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Document
@@ -18,13 +19,16 @@ import java.util.Optional;
 @Builder
 public class BasketDoc {
     @Id
-                private ObjectId id;
-                private String productId;
-//                private Optional<ProductDoc> product;
-                private ArrayList product;
-                private Integer productQuantity;
-                private Integer orderPrice;
-                private Integer deliveryPrice;
-                private Integer totalPrice;
-                private String sessionId;
+    private ObjectId id;
+    private List<ProductBasketDoc> products = new ArrayList();
+    private String sessionId;
+
+
+    //                private String productId;
+
+//                private Integer productQuantity;
+//                private Integer orderPrice;
+//                private Integer deliveryPrice;
+//                private Integer totalPrice;
+//                private String sessionId;
 }

@@ -2,11 +2,14 @@ package com.zelinskiyrk.store.product.mapping;
 
 import com.zelinskiyrk.store.base.api.response.SearchResponse;
 import com.zelinskiyrk.store.base.mapping.BaseMapping;
+import com.zelinskiyrk.store.product.api.CityPriceModel;
 import com.zelinskiyrk.store.product.api.request.ProductRequest;
 import com.zelinskiyrk.store.product.api.response.ProductResponse;
+import com.zelinskiyrk.store.product.model.CityPriceDoc;
 import com.zelinskiyrk.store.product.model.ProductDoc;
 import lombok.Getter;
 
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Getter
@@ -16,13 +19,20 @@ public class ProductMapping {
 
         @Override
         public ProductDoc convert(ProductRequest productRequest){
+
+            CityPriceMapping.RequestMapping priceMapping = CityPriceMapping.getInstance().getRequest();
+            List <CityPriceDoc> prices = productRequest.getPrices()
+                    .stream()
+                    .map(priceMapping::convert)
+                    .collect(Collectors.toList());
+
             return ProductDoc.builder()
                         .id(productRequest.getId())
                         .categoryId(productRequest.getCategoryId())
                         .photoId(productRequest.getPhotoId())
                         .productName(productRequest.getProductName())
                         .description(productRequest.getDescription())
-                        .prices(productRequest.getPrices())
+                        .prices(prices)
                         .proteins(productRequest.getProteins())
                         .fats(productRequest.getFats())
                         .carbohydrates(productRequest.getCarbohydrates())
@@ -34,19 +44,28 @@ public class ProductMapping {
         public ProductRequest unmapping(ProductDoc productDoc) {
             throw new RuntimeException("don't use this");
         }
+
     }
+
 
     public static class ResponseMapping extends BaseMapping<ProductDoc, ProductResponse> {
 
         @Override
         public ProductResponse convert(ProductDoc productDoc){
+
+            CityPriceMapping.RequestMapping priceMapping = CityPriceMapping.getInstance().getRequest();
+            List <CityPriceModel> prices = productDoc.getPrices()
+                    .stream()
+                    .map(priceMapping::unmapping)
+                    .collect(Collectors.toList());
+
             return ProductResponse.builder()
                         .id(productDoc.getId().toString())
                         .categoryId(productDoc.getCategoryId().toString())
                         .photoId(productDoc.getPhotoId().toString())
                         .productName(productDoc.getProductName())
                         .description(productDoc.getDescription())
-                        .prices(productDoc.getPrices())
+                        .prices(prices)
                         .proteins(productDoc.getProteins())
                         .fats(productDoc.getFats())
                         .carbohydrates(productDoc.getCarbohydrates())
