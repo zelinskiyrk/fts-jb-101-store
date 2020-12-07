@@ -13,9 +13,13 @@ import com.zelinskiyrk.store.product.service.ProductApiService;
 import io.swagger.annotations.*;
 import lombok.RequiredArgsConstructor;
 import org.bson.types.ObjectId;
+import org.slf4j.LoggerFactory;
 import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 
 @RestController
@@ -31,6 +35,7 @@ public class ProductApiController {
             @ApiResponse(code = 400, message = "Product already exist")
     })
     public OkResponse<ProductResponse> addProduct(@RequestBody ProductRequest request) throws ProductExistException {
+
         return OkResponse.of(ProductMapping.getInstance().getResponse().convert(
                 productApiService.addProduct(request)));
     }

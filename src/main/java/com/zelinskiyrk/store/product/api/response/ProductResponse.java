@@ -1,14 +1,13 @@
 package com.zelinskiyrk.store.product.api.response;
 
+import com.zelinskiyrk.store.product.api.CityPriceModel;
 import io.swagger.annotations.ApiModel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
-import org.bson.types.ObjectId;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.List;
 
 @Getter
 @Setter
@@ -21,9 +20,9 @@ public class ProductResponse {
                 protected String photoId;
                 protected String productName;
                 protected String description;
-                protected ArrayList prices;
-                protected Integer proteins;
-                protected Integer fats;
-                protected Integer carbohydrates;
-                protected Integer calories;
+                protected List<CityPriceModel> prices;
+                protected Float proteins;
+                protected Float fats;
+                protected Float carbohydrates;
+                protected Float calories;
 }
