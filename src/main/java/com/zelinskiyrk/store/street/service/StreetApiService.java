@@ -1,11 +1,10 @@
 package com.zelinskiyrk.store.street.service;
 
-import com.zelinskiyrk.store.base.api.request.SearchRequest;
-import com.zelinskiyrk.store.street.api.request.StreetSearchRequest;
 import com.zelinskiyrk.store.base.api.response.SearchResponse;
 import com.zelinskiyrk.store.city.exception.CityNotExistException;
 import com.zelinskiyrk.store.city.repository.CityRepository;
 import com.zelinskiyrk.store.street.api.request.StreetRequest;
+import com.zelinskiyrk.store.street.api.request.StreetSearchRequest;
 import com.zelinskiyrk.store.street.exception.StreetExistException;
 import com.zelinskiyrk.store.street.exception.StreetNotExistException;
 import com.zelinskiyrk.store.street.mapping.StreetMapping;
@@ -31,11 +30,11 @@ public class StreetApiService {
     public StreetDoc addStreet(StreetRequest request)
             throws StreetExistException, CityNotExistException {
 
-        if (streetRepository.findByCityIdAndStreetName(request.getCityId(), request.getStreetName()).isPresent() == true){
+        if (streetRepository.findByCityIdAndStreetName(request.getCityId(), request.getStreetName()).isPresent()) {
             throw new StreetExistException();
         }
 
-        if (cityRepository.findById(request.getCityId()).isEmpty()){
+        if (cityRepository.findById(request.getCityId()).isEmpty()) {
             throw new CityNotExistException();
         }
 
@@ -44,20 +43,22 @@ public class StreetApiService {
         return streetDoc;
     }
 
-    public Optional<StreetDoc> findById(ObjectId id){
+    public Optional<StreetDoc> findById(ObjectId id) {
         return streetRepository.findById(id);
     }
 
     public SearchResponse<StreetDoc> search(
             StreetSearchRequest request
-    ){
+    ) {
         Criteria criteria = new Criteria();
-        if (request.getQuery() != null && request.getQuery() != ""){
+        if (request.getQuery() != null && request.getQuery() != "") {
             criteria = criteria.andOperator(
                     Criteria.where("cityId").regex(request.getQuery(), "i"),
                     Criteria.where("streetName").regex(request.getQuery(), "i")
             );
         }
+
+        //TODO Не выполняется поиск по cityId и имени. Выдает только весь список целиком
 
         Query query = new Query(criteria);
 //        if (request.getCityId() != null) {
@@ -71,7 +72,7 @@ public class StreetApiService {
 
     public StreetDoc update(StreetRequest request) throws StreetNotExistException {
         Optional<StreetDoc> streetDocOptional = streetRepository.findById(request.getId());
-        if (streetDocOptional.isPresent() == false){
+        if (streetDocOptional.isEmpty()) {
             throw new StreetNotExistException();
         }
 
@@ -85,7 +86,7 @@ public class StreetApiService {
         return streetDoc;
     }
 
-    public void delete(ObjectId id){
+    public void delete(ObjectId id) {
         streetRepository.deleteById(id);
     }
 }

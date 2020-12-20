@@ -7,7 +7,6 @@ import com.zelinskiyrk.store.street.api.response.StreetResponse;
 import com.zelinskiyrk.store.street.model.StreetDoc;
 import lombok.Getter;
 
-import java.util.List;
 import java.util.stream.Collectors;
 
 @Getter
@@ -16,7 +15,7 @@ public class StreetMapping {
     public static class RequestMapping extends BaseMapping<StreetRequest, StreetDoc> {
 
         @Override
-        public StreetDoc convert(StreetRequest streetRequest){
+        public StreetDoc convert(StreetRequest streetRequest) {
             return StreetDoc.builder()
                     .id(streetRequest.getId())
                     .streetName(streetRequest.getStreetName())
@@ -33,7 +32,7 @@ public class StreetMapping {
     public static class ResponseMapping extends BaseMapping<StreetDoc, StreetResponse> {
 
         @Override
-        public StreetResponse convert(StreetDoc streetDoc){
+        public StreetResponse convert(StreetDoc streetDoc) {
             return StreetResponse.builder()
                     .id(streetDoc.getId().toString())
                     .streetName(streetDoc.getStreetName())
@@ -47,8 +46,8 @@ public class StreetMapping {
         }
     }
 
-    public static class SearchMapping extends BaseMapping<SearchResponse<StreetDoc>, SearchResponse<StreetResponse>>{
-        private ResponseMapping responseMapping = new ResponseMapping();
+    public static class SearchMapping extends BaseMapping<SearchResponse<StreetDoc>, SearchResponse<StreetResponse>> {
+        private final ResponseMapping responseMapping = new ResponseMapping();
 
         @Override
         public SearchResponse<StreetResponse> convert(SearchResponse<StreetDoc> searchResponse) {
@@ -68,7 +67,7 @@ public class StreetMapping {
     private final ResponseMapping response = new ResponseMapping();
     private final SearchMapping search = new SearchMapping();
 
-    public static StreetMapping getInstance(){
+    public static StreetMapping getInstance() {
         return new StreetMapping();
     }
 }

@@ -9,7 +9,7 @@ import org.bson.types.ObjectId;
 @Setter
 @ApiModel(value = "PhotoRequest", description = "Model for create and update photo")
 public class PhotoRequest {
-                private ObjectId id;
-                private String photoName;
-                private String contentType;
+    private ObjectId id;
+    private String photoName;
+    private String contentType;
 }

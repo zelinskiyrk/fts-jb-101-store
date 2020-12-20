@@ -9,7 +9,7 @@ import org.bson.types.ObjectId;
 @Setter
 @ApiModel(value = "StreetRequest", description = "Model for create & update street")
 public class StreetRequest {
-        private ObjectId id;
-        private String streetName;
-        private ObjectId cityId;
+    private ObjectId id;
+    private String streetName;
+    private ObjectId cityId;
 }

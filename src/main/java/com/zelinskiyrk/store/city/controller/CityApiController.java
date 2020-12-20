@@ -54,7 +54,7 @@ public class CityApiController {
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Success")
     })
-    public OkResponse<List<CityResponse>> search(){
+    public OkResponse<List<CityResponse>> search() {
         return OkResponse.of(CityMapping.getInstance().getSearch().convert(
                 cityApiService.search()
         ));
@@ -70,7 +70,7 @@ public class CityApiController {
             @ApiParam(value = "City ID")
             @PathVariable String id,
             @RequestBody CityRequest cityRequest
-            ) throws CityNotExistException {
+    ) throws CityNotExistException {
         return OkResponse.of(CityMapping.getInstance().getResponse().convert(
                 cityApiService.update(cityRequest)
         ));
@@ -83,7 +83,7 @@ public class CityApiController {
     })
     public OkResponse<String> deleteById(
             @ApiParam(value = "City ID")
-            @PathVariable ObjectId id){
+            @PathVariable ObjectId id) {
         cityApiService.delete(id);
         return OkResponse.of(HttpStatus.OK.toString());
     }

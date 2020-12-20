@@ -15,7 +15,7 @@ public class CategoryMapping {
     public static class RequestMapping extends BaseMapping<CategoryRequest, CategoryDoc> {
 
         @Override
-        public CategoryDoc convert(CategoryRequest categoryRequest){
+        public CategoryDoc convert(CategoryRequest categoryRequest) {
             return CategoryDoc.builder()
                     .id(categoryRequest.getId())
                     .categoryName(categoryRequest.getCategoryName())
@@ -31,7 +31,7 @@ public class CategoryMapping {
     public static class ResponseMapping extends BaseMapping<CategoryDoc, CategoryResponse> {
 
         @Override
-        public CategoryResponse convert(CategoryDoc categoryDoc){
+        public CategoryResponse convert(CategoryDoc categoryDoc) {
             return CategoryResponse.builder()
                     .id(categoryDoc.getId().toString())
                     .categoryName(categoryDoc.getCategoryName())
@@ -44,7 +44,7 @@ public class CategoryMapping {
         }
     }
 
-    public static class SearchMapping extends BaseMapping<List<CategoryDoc>, List<CategoryResponse>>{
+    public static class SearchMapping extends BaseMapping<List<CategoryDoc>, List<CategoryResponse>> {
         private ResponseMapping responseMapping = new ResponseMapping();
 
         @Override
@@ -62,7 +62,7 @@ public class CategoryMapping {
     private final ResponseMapping response = new ResponseMapping();
     private final SearchMapping search = new SearchMapping();
 
-    public static CategoryMapping getInstance(){
+    public static CategoryMapping getInstance() {
         return new CategoryMapping();
     }
 }

@@ -13,13 +13,9 @@ import com.zelinskiyrk.store.product.service.ProductApiService;
 import io.swagger.annotations.*;
 import lombok.RequiredArgsConstructor;
 import org.bson.types.ObjectId;
-import org.slf4j.LoggerFactory;
 import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 
 @RestController
@@ -61,7 +57,7 @@ public class ProductApiController {
     })
     public OkResponse<SearchResponse<ProductResponse>> search(
             @ModelAttribute ProductSearchRequest request
-            ){
+    ) {
         return OkResponse.of(ProductMapping.getInstance().getSearch().convert(
                 productApiService.search(request)
         ));
@@ -77,7 +73,7 @@ public class ProductApiController {
             @ApiParam(value = "Product ID")
             @PathVariable String id,
             @RequestBody ProductRequest productRequest
-            ) throws ProductNotExistException {
+    ) throws ProductNotExistException {
         return OkResponse.of(ProductMapping.getInstance().getResponse().convert(
                 productApiService.update(productRequest)
         ));
@@ -90,7 +86,7 @@ public class ProductApiController {
     })
     public OkResponse<String> deleteById(
             @ApiParam(value = "Product ID")
-            @PathVariable ObjectId id){
+            @PathVariable ObjectId id) {
         productApiService.delete(id);
         return OkResponse.of(HttpStatus.OK.toString());
     }

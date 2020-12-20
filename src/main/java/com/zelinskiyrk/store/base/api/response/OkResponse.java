@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 @ApiModel(value = "OkResponse", description = "Model for success response")
 public class OkResponse<T> {
-    public enum Status{
+    public enum Status {
         SUCCESS, ERROR
     }
 
@@ -18,7 +18,7 @@ public class OkResponse<T> {
     @ApiModelProperty(value = "Status")
     protected Status status;
 
-    public static <T> OkResponse of(T t){
+    public static <T> OkResponse of(T t) {
         OkResponse okResponse = new OkResponse();
         okResponse.setResult(t);
         okResponse.setStatus(Status.SUCCESS);

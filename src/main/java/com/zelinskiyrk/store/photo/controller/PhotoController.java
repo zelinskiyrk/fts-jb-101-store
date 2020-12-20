@@ -44,8 +44,8 @@ public class PhotoController {
             @ApiParam(value = "Photo ID") @PathVariable ObjectId id, HttpServletResponse response
     ) throws ChangeSetPersister.NotFoundException, IOException {
         PhotoDoc photoDoc = photoApiService.findById(id).orElseThrow();
-        response.addHeader("Content-Type",  photoDoc.getContentType());
-        response.addHeader("Content-Disposition",  ": inline; filename\""+photoDoc.getPhotoName()+"\"");
+        response.addHeader("Content-Type", photoDoc.getContentType());
+        response.addHeader("Content-Disposition", ": inline; filename\"" + photoDoc.getPhotoName() + "\"");
         FileCopyUtils.copy(photoApiService.downloadById(id), response.getOutputStream());
     }
 }

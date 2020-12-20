@@ -12,6 +12,6 @@ import lombok.experimental.SuperBuilder;
 @AllArgsConstructor
 @ApiModel(value = "CategoryResponse", description = "Category data (for search and List)")
 public class CategoryResponse {
-        protected String id;
-        protected String categoryName;
+    protected String id;
+    protected String categoryName;
 }

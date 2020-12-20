@@ -9,6 +9,6 @@ import org.bson.types.ObjectId;
 @Setter
 @ApiModel(value = "CategoryRequest", description = "Model for create and update products category")
 public class CategoryRequest {
-        private ObjectId id;
-        private String categoryName;
+    private ObjectId id;
+    private String categoryName;
 }

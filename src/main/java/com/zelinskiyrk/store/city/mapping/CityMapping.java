@@ -15,10 +15,12 @@ public class CityMapping {
     public static class RequestMapping extends BaseMapping<CityRequest, CityDoc> {
 
         @Override
-        public CityDoc convert(CityRequest cityRequest){
+        public CityDoc convert(CityRequest cityRequest) {
             return CityDoc.builder()
                     .id(cityRequest.getId())
                     .cityName(cityRequest.getCityName())
+                    .deliveryTime(cityRequest.getDeliveryTime())
+                    .deliveryPrice(cityRequest.getDeliveryPrice())
                     .build();
         }
 
@@ -31,10 +33,12 @@ public class CityMapping {
     public static class ResponseMapping extends BaseMapping<CityDoc, CityResponse> {
 
         @Override
-        public CityResponse convert(CityDoc cityDoc){
+        public CityResponse convert(CityDoc cityDoc) {
             return CityResponse.builder()
                     .id(cityDoc.getId().toString())
                     .cityName(cityDoc.getCityName())
+                    .deliveryTime(cityDoc.getDeliveryTime())
+                    .deliveryPrice(cityDoc.getDeliveryPrice().toString())
                     .build();
         }
 
@@ -44,7 +48,7 @@ public class CityMapping {
         }
     }
 
-    public static class SearchMapping extends BaseMapping<List<CityDoc>, List<CityResponse>>{
+    public static class SearchMapping extends BaseMapping<List<CityDoc>, List<CityResponse>> {
         private ResponseMapping responseMapping = new ResponseMapping();
 
         @Override
@@ -62,7 +66,7 @@ public class CityMapping {
     private final ResponseMapping response = new ResponseMapping();
     private final SearchMapping search = new SearchMapping();
 
-    public static CityMapping getInstance(){
+    public static CityMapping getInstance() {
         return new CityMapping();
     }
 }
