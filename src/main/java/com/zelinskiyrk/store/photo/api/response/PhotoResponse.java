@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
-import org.bson.types.ObjectId;
 
 @Getter
 @Setter
@@ -13,6 +12,6 @@ import org.bson.types.ObjectId;
 @AllArgsConstructor
 @ApiModel(value = "PhotoResponse", description = "Photo data (for search and List)")
 public class PhotoResponse {
-                protected String id;
-                protected String photoName;
+    protected String id;
+    protected String photoName;
 }

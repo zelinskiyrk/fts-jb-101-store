@@ -14,7 +14,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Builder
 public class StreetDoc {
     @Id
-            private ObjectId id;
-            private String streetName;
-            private ObjectId cityId;
+    private ObjectId id;
+    private String streetName;
+    private ObjectId cityId;
 }

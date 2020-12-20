@@ -1,4 +1,4 @@
-package com.zelinskiyrk.store.product.api;
+package com.zelinskiyrk.store.product.model;
 
 import lombok.*;
 
@@ -10,5 +10,6 @@ import lombok.*;
 @NoArgsConstructor
 public class CityPriceModel {
     private String cityId;
-    @NonNull private Integer price;
+    @NonNull
+    private Double price;
 }

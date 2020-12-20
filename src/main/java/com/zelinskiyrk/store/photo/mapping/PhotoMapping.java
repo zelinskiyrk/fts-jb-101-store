@@ -15,10 +15,10 @@ public class PhotoMapping {
     public static class RequestMapping extends BaseMapping<PhotoRequest, PhotoDoc> {
 
         @Override
-        public PhotoDoc convert(PhotoRequest photoRequest){
+        public PhotoDoc convert(PhotoRequest photoRequest) {
             return PhotoDoc.builder()
-                        .id(photoRequest.getId())
-                        .photoName(photoRequest.getPhotoName())
+                    .id(photoRequest.getId())
+                    .photoName(photoRequest.getPhotoName())
                     .build();
         }
 
@@ -31,10 +31,10 @@ public class PhotoMapping {
     public static class ResponseMapping extends BaseMapping<PhotoDoc, PhotoResponse> {
 
         @Override
-        public PhotoResponse convert(PhotoDoc photoDoc){
+        public PhotoResponse convert(PhotoDoc photoDoc) {
             return PhotoResponse.builder()
-                        .id(photoDoc.getId().toString())
-                        .photoName(photoDoc.getPhotoName())
+                    .id(photoDoc.getId().toString())
+                    .photoName(photoDoc.getPhotoName())
                     .build();
         }
 
@@ -44,8 +44,8 @@ public class PhotoMapping {
         }
     }
 
-    public static class SearchMapping extends BaseMapping<SearchResponse<PhotoDoc>, SearchResponse<PhotoResponse>>{
-        private ResponseMapping responseMapping = new ResponseMapping();
+    public static class SearchMapping extends BaseMapping<SearchResponse<PhotoDoc>, SearchResponse<PhotoResponse>> {
+        private final ResponseMapping responseMapping = new ResponseMapping();
 
         @Override
         public SearchResponse<PhotoResponse> convert(SearchResponse<PhotoDoc> searchResponse) {
@@ -65,7 +65,7 @@ public class PhotoMapping {
     private final ResponseMapping response = new ResponseMapping();
     private final SearchMapping search = new SearchMapping();
 
-    public static PhotoMapping getInstance(){
+    public static PhotoMapping getInstance() {
         return new PhotoMapping();
     }
 }

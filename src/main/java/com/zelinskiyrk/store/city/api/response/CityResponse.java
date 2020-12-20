@@ -14,4 +14,6 @@ import lombok.experimental.SuperBuilder;
 public class CityResponse {
     protected String id;
     protected String cityName;
+    private String deliveryTime;
+    private String deliveryPrice;
 }

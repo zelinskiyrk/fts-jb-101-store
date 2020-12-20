@@ -14,8 +14,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Builder
 public class GuestDoc {
     @Id
-                private ObjectId id;
-                private String guestName;
-                private String guestPhoneNumber;
-                private Address address;
+    private ObjectId id;
+    private String guestName;
+    private String guestPhoneNumber;
+    private Address address;
 }

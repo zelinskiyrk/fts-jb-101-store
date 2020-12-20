@@ -15,7 +15,7 @@ public class SearchResponse<T> {
     private Long count;
     private List<T> list;
 
-    public static <T> SearchResponse<T> of(List<T> list, Long count){
+    public static <T> SearchResponse<T> of(List<T> list, Long count) {
         return new SearchResponse<>(count, list);
     }
 }

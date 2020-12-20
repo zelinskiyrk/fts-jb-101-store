@@ -55,7 +55,7 @@ public class CategoryApiController {
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Success")
     })
-    public OkResponse<List<CategoryResponse>> search(){
+    public OkResponse<List<CategoryResponse>> search() {
         return OkResponse.of(CategoryMapping.getInstance().getSearch().convert(
                 categoryApiService.search()
         ));
@@ -71,7 +71,7 @@ public class CategoryApiController {
             @ApiParam(value = "Category ID")
             @PathVariable String id,
             @RequestBody CategoryRequest categoryRequest
-            ) throws CategoryNotExistException {
+    ) throws CategoryNotExistException {
         return OkResponse.of(CategoryMapping.getInstance().getResponse().convert(
                 categoryApiService.update(categoryRequest)
         ));
@@ -84,7 +84,7 @@ public class CategoryApiController {
     })
     public OkResponse<String> deleteById(
             @ApiParam(value = "Category ID")
-            @PathVariable ObjectId id){
+            @PathVariable ObjectId id) {
         categoryApiService.delete(id);
         return OkResponse.of(HttpStatus.OK.toString());
     }

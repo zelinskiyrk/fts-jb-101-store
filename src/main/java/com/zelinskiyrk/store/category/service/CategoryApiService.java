@@ -8,7 +8,6 @@ import com.zelinskiyrk.store.category.model.CategoryDoc;
 import com.zelinskiyrk.store.category.repository.CategoryRepository;
 import lombok.RequiredArgsConstructor;
 import org.bson.types.ObjectId;
-import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,7 +21,7 @@ public class CategoryApiService {
     public CategoryDoc addCategory(CategoryRequest request)
             throws CategoryExistException {
 
-        if (categoryRepository.findAllByCategoryName(request.getCategoryName()).isPresent() == true){
+        if (categoryRepository.findAllByCategoryName(request.getCategoryName()).isPresent()) {
             throw new CategoryExistException();
         }
 
@@ -32,17 +31,17 @@ public class CategoryApiService {
         return categoryDoc;
     }
 
-    public Optional<CategoryDoc> findById(ObjectId id){
+    public Optional<CategoryDoc> findById(ObjectId id) {
         return categoryRepository.findById(id);
     }
 
-    public List<CategoryDoc> search(){
+    public List<CategoryDoc> search() {
         return categoryRepository.findAll();
     }
 
     public CategoryDoc update(CategoryRequest request) throws CategoryNotExistException {
         Optional<CategoryDoc> categoryDocOptional = categoryRepository.findById(request.getId());
-        if (categoryDocOptional.isPresent() == false){
+        if (categoryDocOptional.isEmpty()) {
             throw new CategoryNotExistException();
         }
 
@@ -53,7 +52,7 @@ public class CategoryApiService {
         return categoryDoc;
     }
 
-    public void delete(ObjectId id){
+    public void delete(ObjectId id) {
         categoryRepository.deleteById(id);
     }
 }

@@ -1,7 +1,5 @@
 package com.zelinskiyrk.store.guest.service;
 
-import com.zelinskiyrk.store.base.api.request.SearchRequest;
-import com.zelinskiyrk.store.base.api.response.SearchResponse;
 import com.zelinskiyrk.store.guest.api.request.GuestRequest;
 import com.zelinskiyrk.store.guest.exception.GuestExistException;
 import com.zelinskiyrk.store.guest.exception.GuestNotExistException;
@@ -11,8 +9,6 @@ import com.zelinskiyrk.store.guest.repository.GuestRepository;
 import lombok.RequiredArgsConstructor;
 import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.data.mongodb.core.query.Criteria;
-import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -27,7 +23,7 @@ public class GuestApiService {
     public GuestDoc addGuest(GuestRequest request)
             throws GuestExistException {
 
-        if (guestRepository.findAllByGuestPhoneNumber(request.getGuestPhoneNumber()).isPresent() == true){
+        if (guestRepository.findAllByGuestPhoneNumber(request.getGuestPhoneNumber()).isPresent()) {
             throw new GuestExistException();
         }
 
@@ -36,11 +32,12 @@ public class GuestApiService {
         return guestDoc;
     }
 
-    public Optional<GuestDoc> findById(ObjectId id){
+    public Optional<GuestDoc> findById(ObjectId id) {
         return guestRepository.findById(id);
     }
 
-    public List<GuestDoc> search(){
+    //TODO Нужен поиск по номеру телефона, фамилии
+    public List<GuestDoc> search() {
 //    public List<GuestDoc> search(
 //            SearchRequest request
 //    ){
@@ -57,11 +54,9 @@ public class GuestApiService {
 
     public GuestDoc update(GuestRequest request) throws GuestNotExistException {
         Optional<GuestDoc> guestDocOptional = guestRepository.findById(request.getId());
-        if (guestDocOptional.isPresent() == false){
+        if (guestDocOptional.isEmpty()) {
             throw new GuestNotExistException();
         }
-
-        GuestDoc oldDoc = guestDocOptional.get();
 
         GuestDoc guestDoc = GuestMapping.getInstance().getRequest().convert(request);
         guestDoc.setId(request.getId());
@@ -70,7 +65,7 @@ public class GuestApiService {
         return guestDoc;
     }
 
-    public void delete(ObjectId id){
+    public void delete(ObjectId id) {
         guestRepository.deleteById(id);
     }
 }

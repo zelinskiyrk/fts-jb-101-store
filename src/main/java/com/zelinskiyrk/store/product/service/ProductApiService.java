@@ -27,7 +27,7 @@ public class ProductApiService {
     public ProductDoc addProduct(ProductRequest request)
             throws ProductExistException {
 
-        if (productRepository.findAllByProductName(request.getProductName()).isPresent() == true){
+        if (productRepository.findAllByProductName(request.getProductName()).isPresent()) {
             throw new ProductExistException();
         }
 
@@ -36,13 +36,14 @@ public class ProductApiService {
         return productDoc;
     }
 
-    public Optional<ProductDoc> findById(ObjectId id){
+    public Optional<ProductDoc> findById(ObjectId id) {
         return productRepository.findById(id);
     }
 
+
     public SearchResponse<ProductDoc> search(
             ProductSearchRequest request
-    ){
+    ) {
         Query query = new Query();
         if (request.getProductName() != null) {
             query.addCriteria(Criteria.where("productName").is(request.getProductName()));
@@ -53,9 +54,10 @@ public class ProductApiService {
         return SearchResponse.of(productDocs, count);
     }
 
+
     public ProductDoc update(ProductRequest request) throws ProductNotExistException {
         Optional<ProductDoc> productDocOptional = productRepository.findById(request.getId());
-        if (productDocOptional.isPresent() == false){
+        if (productDocOptional.isEmpty()) {
             throw new ProductNotExistException();
         }
 
@@ -68,7 +70,7 @@ public class ProductApiService {
         return productDoc;
     }
 
-    public void delete(ObjectId id){
+    public void delete(ObjectId id) {
         productRepository.deleteById(id);
     }
 }

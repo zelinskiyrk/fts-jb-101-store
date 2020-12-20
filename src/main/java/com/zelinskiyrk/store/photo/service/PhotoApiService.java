@@ -37,7 +37,7 @@ public class PhotoApiService {
 
     public PhotoDoc addPhoto(MultipartFile file)
             throws PhotoExistException, IOException {
-        if (photoRepository.findAllByPhotoName(file.getOriginalFilename()).isPresent() == true){
+        if (photoRepository.findAllByPhotoName(file.getOriginalFilename()).isPresent()) {
             throw new PhotoExistException();
         }
 
@@ -65,13 +65,13 @@ public class PhotoApiService {
         return operations.getResource(file).getInputStream();
     }
 
-    public Optional<PhotoDoc> findById(ObjectId id){
+    public Optional<PhotoDoc> findById(ObjectId id) {
         return photoRepository.findById(id);
     }
 
     public SearchResponse<PhotoDoc> search(
             PhotoSearchRequest request
-    ){
+    ) {
         Query query = new Query();
         if (request.getPhotoName() != null) {
             query.addCriteria(Criteria.where("photoName").is(request.getPhotoName()));
@@ -84,7 +84,7 @@ public class PhotoApiService {
 
     public PhotoDoc update(PhotoRequest request) throws PhotoNotExistException {
         Optional<PhotoDoc> photoDocOptional = photoRepository.findById(request.getId());
-        if (photoDocOptional.isPresent() == false){
+        if (photoDocOptional.isEmpty()) {
             throw new PhotoNotExistException();
         }
 
@@ -95,7 +95,7 @@ public class PhotoApiService {
         return photoDoc;
     }
 
-    public void delete(ObjectId id){
+    public void delete(ObjectId id) {
         photoRepository.deleteById(id);
     }
 }

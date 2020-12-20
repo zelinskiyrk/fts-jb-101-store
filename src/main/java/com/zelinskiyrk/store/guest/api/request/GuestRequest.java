@@ -10,8 +10,8 @@ import org.bson.types.ObjectId;
 @Setter
 @ApiModel(value = "GuestRequest", description = "Model for create and update guest")
 public class GuestRequest {
-                private ObjectId id;
-                private String guestName;
-                private String guestPhoneNumber;
-                private Address address;
+    private ObjectId id;
+    private String guestName;
+    private String guestPhoneNumber;
+    private Address address;
 }

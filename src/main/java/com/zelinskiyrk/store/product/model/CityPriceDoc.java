@@ -11,5 +11,6 @@ import lombok.*;
 @ToString
 public class CityPriceDoc {
     private String cityId;
-    @NonNull private Integer price;
+    @NonNull
+    private Double price;
 }

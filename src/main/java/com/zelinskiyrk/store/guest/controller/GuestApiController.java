@@ -1,8 +1,6 @@
 package com.zelinskiyrk.store.guest.controller;
 
-import com.zelinskiyrk.store.base.api.request.SearchRequest;
 import com.zelinskiyrk.store.base.api.response.OkResponse;
-import com.zelinskiyrk.store.base.api.response.SearchResponse;
 import com.zelinskiyrk.store.guest.api.request.GuestRequest;
 import com.zelinskiyrk.store.guest.api.response.GuestResponse;
 import com.zelinskiyrk.store.guest.exception.GuestExistException;
@@ -27,7 +25,7 @@ public class GuestApiController {
     private final GuestApiService guestApiService;
 
     @PostMapping(GuestApiRoutes.ROOT)
-    @ApiOperation(value = "Add new guest", notes = "Use this if you need to add a new guest. You need administrator rights to add a guest.")
+    @ApiOperation(value = "Add new guest", notes = "Используется для добавления данных о покупателе")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Success"),
             @ApiResponse(code = 400, message = "Guest already exist")
@@ -38,7 +36,7 @@ public class GuestApiController {
     }
 
     @GetMapping(GuestApiRoutes.BY_ID)
-    @ApiOperation(value = "Find guest by ID", notes = "Use this if you need to find a guest.")
+    @ApiOperation(value = "Find guest by ID", notes = "Use this if you need to find a guest by Id")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Success"),
             @ApiResponse(code = 404, message = "Guest not found")
@@ -52,13 +50,13 @@ public class GuestApiController {
     }
 
     @GetMapping(GuestApiRoutes.ROOT)
-    @ApiOperation(value = "Search all cities", notes = "Use this if you want to list all cities.")
+    @ApiOperation(value = "Search all guests", notes = "Use this if you want to list all guests.")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Success")
     })
     public OkResponse<List<GuestResponse>> search(
 //            @ModelAttribute SearchRequest request
-            ){
+    ) {
         return OkResponse.of(GuestMapping.getInstance().getSearch().convert(
                 guestApiService.search()
         ));
@@ -74,7 +72,7 @@ public class GuestApiController {
             @ApiParam(value = "Guest ID")
             @PathVariable String id,
             @RequestBody GuestRequest guestRequest
-            ) throws GuestNotExistException {
+    ) throws GuestNotExistException {
         return OkResponse.of(GuestMapping.getInstance().getResponse().convert(
                 guestApiService.update(guestRequest)
         ));
@@ -87,7 +85,7 @@ public class GuestApiController {
     })
     public OkResponse<String> deleteById(
             @ApiParam(value = "Guest ID")
-            @PathVariable ObjectId id){
+            @PathVariable ObjectId id) {
         guestApiService.delete(id);
         return OkResponse.of(HttpStatus.OK.toString());
     }

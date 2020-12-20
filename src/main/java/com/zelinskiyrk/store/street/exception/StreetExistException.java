@@ -1,4 +1,4 @@
 package com.zelinskiyrk.store.street.exception;
 
-public class StreetExistException extends Exception{
+public class StreetExistException extends Exception {
 }

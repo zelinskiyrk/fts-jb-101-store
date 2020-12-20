@@ -1,11 +1,10 @@
 package com.zelinskiyrk.store.street.controller;
 
-import com.zelinskiyrk.store.base.api.request.SearchRequest;
-import com.zelinskiyrk.store.street.api.request.StreetSearchRequest;
 import com.zelinskiyrk.store.base.api.response.OkResponse;
 import com.zelinskiyrk.store.base.api.response.SearchResponse;
 import com.zelinskiyrk.store.city.exception.CityNotExistException;
 import com.zelinskiyrk.store.street.api.request.StreetRequest;
+import com.zelinskiyrk.store.street.api.request.StreetSearchRequest;
 import com.zelinskiyrk.store.street.api.response.StreetResponse;
 import com.zelinskiyrk.store.street.exception.StreetExistException;
 import com.zelinskiyrk.store.street.exception.StreetNotExistException;
@@ -52,13 +51,13 @@ public class StreetApiController {
     }
 
     @GetMapping(StreetApiRoutes.ROOT)
-    @ApiOperation(value = "Search all cities", notes = "Use this if you want to list all cities.")
+    @ApiOperation(value = "Search all streets", notes = "Use this if you want to list all streets.")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Success")
     })
     public OkResponse<SearchResponse<StreetResponse>> search(
             @ModelAttribute StreetSearchRequest request
-            ){
+    ) {
         return OkResponse.of(StreetMapping.getInstance().getSearch().convert(
                 streetApiService.search(request)
         ));
@@ -74,7 +73,7 @@ public class StreetApiController {
             @ApiParam(value = "Street ID")
             @PathVariable String id,
             @RequestBody StreetRequest streetRequest
-            ) throws StreetNotExistException {
+    ) throws StreetNotExistException {
         return OkResponse.of(StreetMapping.getInstance().getResponse().convert(
                 streetApiService.update(streetRequest)
         ));
@@ -87,7 +86,7 @@ public class StreetApiController {
     })
     public OkResponse<String> deleteById(
             @ApiParam(value = "Street ID")
-            @PathVariable ObjectId id){
+            @PathVariable ObjectId id) {
         streetApiService.delete(id);
         return OkResponse.of(HttpStatus.OK.toString());
     }

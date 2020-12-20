@@ -1,4 +1,4 @@
 package com.zelinskiyrk.store.guest.exception;
 
-public class GuestNotExistException extends Exception{
+public class GuestNotExistException extends Exception {
 }

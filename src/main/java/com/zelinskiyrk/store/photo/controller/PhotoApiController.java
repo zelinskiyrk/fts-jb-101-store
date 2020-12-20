@@ -44,7 +44,7 @@ public class PhotoApiController {
     })
     public OkResponse<SearchResponse<PhotoResponse>> search(
             @ModelAttribute PhotoSearchRequest request
-            ){
+    ) {
         return OkResponse.of(PhotoMapping.getInstance().getSearch().convert(
                 photoApiService.search(request)
         ));
@@ -60,7 +60,7 @@ public class PhotoApiController {
             @ApiParam(value = "Photo ID")
             @PathVariable String id,
             @RequestBody PhotoRequest photoRequest
-            ) throws PhotoNotExistException {
+    ) throws PhotoNotExistException {
         return OkResponse.of(PhotoMapping.getInstance().getResponse().convert(
                 photoApiService.update(photoRequest)
         ));
@@ -73,7 +73,7 @@ public class PhotoApiController {
     })
     public OkResponse<String> deleteById(
             @ApiParam(value = "Photo ID")
-            @PathVariable ObjectId id){
+            @PathVariable ObjectId id) {
         photoApiService.delete(id);
         return OkResponse.of(HttpStatus.OK.toString());
     }

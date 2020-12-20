@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
-import org.bson.types.ObjectId;
 
 @Getter
 @Setter
@@ -13,7 +12,7 @@ import org.bson.types.ObjectId;
 @AllArgsConstructor
 @ApiModel(value = "StreetResponse", description = "Street data (for search and List)")
 public class StreetResponse {
-        protected String id;
-        protected String streetName;
-        protected String cityId;
+    protected String id;
+    protected String streetName;
+    protected String cityId;
 }
