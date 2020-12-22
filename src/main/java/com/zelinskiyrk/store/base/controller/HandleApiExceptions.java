@@ -8,6 +8,9 @@ import com.zelinskiyrk.store.category.exception.CategoryExistException;
 import com.zelinskiyrk.store.category.exception.CategoryNotExistException;
 import com.zelinskiyrk.store.city.exception.CityExistException;
 import com.zelinskiyrk.store.city.exception.CityNotExistException;
+import com.zelinskiyrk.store.guest.exception.GuestExistException;
+import com.zelinskiyrk.store.order.exception.OrderNotExistException;
+import com.zelinskiyrk.store.order.exception.OutOfTimeException;
 import com.zelinskiyrk.store.photo.exception.PhotoExistException;
 import com.zelinskiyrk.store.photo.exception.PhotoNotExistException;
 import com.zelinskiyrk.store.product.exception.ProductExistException;
@@ -96,6 +99,21 @@ public class HandleApiExceptions extends ResponseEntityExceptionHandler {
     @ExceptionHandler(EmptyBasketException.class)
     public ResponseEntity<Object> EmptyBasketException(EmptyBasketException ex, WebRequest request) {
         return buildResponseEntity(ErrorResponse.of("Basket is empty", HttpStatus.BAD_REQUEST));
+    }
+
+    @ExceptionHandler(GuestExistException.class)
+    public ResponseEntity<Object> GuestExistException(GuestExistException ex, WebRequest request) {
+        return buildResponseEntity(ErrorResponse.of("This guest already exist", HttpStatus.BAD_REQUEST));
+    }
+
+    @ExceptionHandler(OrderNotExistException.class)
+    public ResponseEntity<Object> OrderNotExistException(OrderNotExistException ex, WebRequest request) {
+        return buildResponseEntity(ErrorResponse.of("Order with this order number does not exist", HttpStatus.BAD_REQUEST));
+    }
+
+    @ExceptionHandler(OutOfTimeException.class)
+    public ResponseEntity<Object> OutOfTimeException(OutOfTimeException ex, WebRequest request) {
+        return buildResponseEntity(ErrorResponse.of("The selected delivery time is not possible. Choose another time", HttpStatus.BAD_REQUEST));
     }
 
     //TODO

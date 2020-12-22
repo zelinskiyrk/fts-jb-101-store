@@ -9,6 +9,6 @@ import lombok.Setter;
 @ApiModel(value = "AddCityRequest", description = "Model for add city")
 public class AddCityRequest {
     private String cityName;
-    private String deliveryTime;
+    private Integer deliveryTime;
     private Double deliveryPrice;
 }

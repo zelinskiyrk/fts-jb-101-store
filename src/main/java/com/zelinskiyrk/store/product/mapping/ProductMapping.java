@@ -2,10 +2,10 @@ package com.zelinskiyrk.store.product.mapping;
 
 import com.zelinskiyrk.store.base.api.response.SearchResponse;
 import com.zelinskiyrk.store.base.mapping.BaseMapping;
-import com.zelinskiyrk.store.product.model.CityPriceModel;
 import com.zelinskiyrk.store.product.api.request.ProductRequest;
 import com.zelinskiyrk.store.product.api.response.ProductResponse;
 import com.zelinskiyrk.store.product.model.CityPriceDoc;
+import com.zelinskiyrk.store.product.model.CityPriceModel;
 import com.zelinskiyrk.store.product.model.ProductDoc;
 import lombok.Getter;
 

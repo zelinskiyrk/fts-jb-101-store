@@ -12,7 +12,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 public class ScheduleTaskService {
     private final BasketApiService basketApiService;
 
-    @Scheduled(cron = "0 00 1 * * ?")
+    @Scheduled(cron = "0 00 01 * * ?")
     public void showTime() {
         basketApiService.deleteOldBaskets();
     }

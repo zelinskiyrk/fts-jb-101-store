@@ -97,7 +97,7 @@ public class BasketApiService {
                 .map(ProductBasketDoc::getProductId)
                 .collect(Collectors.toList());
 
-        List<ProductDoc> productDocs = new ArrayList<ProductDoc>();
+        List<ProductDoc> productDocs = new ArrayList<>();
 
         for (String productId : productIds
         ) {
