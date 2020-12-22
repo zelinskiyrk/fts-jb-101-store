@@ -30,6 +30,11 @@ public class CityApiService {
         return cityDoc;
     }
 
+    public Integer findDeliveryTime(ObjectId cityId) {
+        CityDoc city = cityRepository.findCityDocById(cityId);
+        return city.getDeliveryTime();
+    }
+
     public Optional<CityDoc> findById(ObjectId id) {
         return cityRepository.findById(id);
     }

@@ -37,7 +37,7 @@ public class CityMapping {
             return CityResponse.builder()
                     .id(cityDoc.getId().toString())
                     .cityName(cityDoc.getCityName())
-                    .deliveryTime(cityDoc.getDeliveryTime())
+                    .deliveryTime(cityDoc.getDeliveryTime().toString())
                     .deliveryPrice(cityDoc.getDeliveryPrice().toString())
                     .build();
         }

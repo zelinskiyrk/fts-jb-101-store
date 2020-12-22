@@ -16,6 +16,6 @@ public class CityDoc {
     @Id
     private ObjectId id;
     private String cityName;
-    private String deliveryTime;
+    private Integer deliveryTime;
     private Double deliveryPrice;
 }

@@ -30,8 +30,6 @@ public class BasketResponse {
         private String photoId;
         private Integer quantity;
         private Double price;
-
-
     }
 
 }

@@ -11,6 +11,6 @@ import org.bson.types.ObjectId;
 public class CityRequest {
     private ObjectId id;
     private String cityName;
-    private String deliveryTime;
+    private Integer deliveryTime;
     private Double deliveryPrice;
 }
