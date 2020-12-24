@@ -9,5 +9,6 @@ import java.util.Optional;
 
 @Repository
 public interface GuestRepository extends MongoRepository<GuestDoc, ObjectId> {
-    public Optional<GuestDoc> findAllByGuestPhoneNumber(String guestPhoneNumber);
+    Optional<GuestDoc> findAllByGuestPhoneNumber(String guestPhoneNumber);
+    GuestDoc findByGuestPhoneNumber(String guestPhoneNumber);
 }

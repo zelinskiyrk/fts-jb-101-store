@@ -86,16 +86,6 @@ public class OrderApiService {
         return checkDeliveryTime(request.getDeliveryTime(), request.getCityId());
     }
 
-    public Double getOrderPrice(OrderRequest request, HttpServletRequest servletRequest) {
-        BasketDoc basketDoc = basketApiService.getBasket(servletRequest);
-        BasketResponse basketResponse = basketApiService.getBasketResponse(basketDoc, request.getCityId());
-        return basketResponse.getTotalPrice();
-    }
-
-    public Integer getOrderNumber() {
-        return (int) mongoTemplate.getCollection("orderDoc").countDocuments();
-    }
-
     public LocalDateTime checkDeliveryTime(LocalDateTime deliveryTime, ObjectId cityId) throws OutOfTimeException {
         Long cityDeliveryTime = Long.valueOf(
                 cityApiService.findDeliveryTime(cityId)
@@ -109,6 +99,16 @@ public class OrderApiService {
             throw new OutOfTimeException();
         }
         return deliveryTime;
+    }
+
+    public Double getOrderPrice(OrderRequest request, HttpServletRequest servletRequest) {
+        BasketDoc basketDoc = basketApiService.getBasket(servletRequest);
+        BasketResponse basketResponse = basketApiService.getBasketResponse(basketDoc, request.getCityId());
+        return basketResponse.getTotalPrice();
+    }
+
+    public Integer getOrderNumber() {
+        return (int) mongoTemplate.getCollection("orderDoc").countDocuments();
     }
 
 
