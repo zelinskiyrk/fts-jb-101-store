@@ -51,16 +51,13 @@ public class StreetApiController {
     }
 
     @GetMapping(StreetApiRoutes.ROOT)
-    @ApiOperation(value = "Search all streets", notes = "Use this if you want to list all streets.")
+    @ApiOperation(value = "Search all streets", notes = "Use to find streets in cityId. Returns the result based on the initial letters of the street, case insensitive. CityId is required.")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Success")
     })
     public OkResponse<List<String>> search(
             @ModelAttribute StreetRequest request
     ) {
-//        return OkResponse.of(StreetMapping.getInstance().getSearch().convert(
-//                streetApiService.search(request)
-//        ));
         return OkResponse.of(streetApiService.search(request));
     }
 

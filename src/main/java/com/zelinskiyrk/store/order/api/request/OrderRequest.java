@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 
 @Getter
 @Setter
-@ApiModel(value = "OrderRequest", description = "Model for create and update order")
+@ApiModel(value = "OrderRequest", description = "Model for create order")
 public class OrderRequest {
     private ObjectId id;
     private ObjectId cityId;
