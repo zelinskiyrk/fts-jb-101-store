@@ -49,7 +49,7 @@ public class CityMapping {
     }
 
     public static class SearchMapping extends BaseMapping<List<CityDoc>, List<CityResponse>> {
-        private ResponseMapping responseMapping = new ResponseMapping();
+        private final ResponseMapping responseMapping = new ResponseMapping();
 
         @Override
         public List<CityResponse> convert(List<CityDoc> cityDocs) {
