@@ -9,7 +9,7 @@ import java.util.Optional;
 
 @Repository
 public interface ProductRepository extends MongoRepository<ProductDoc, ObjectId> {
-    public Optional<ProductDoc> findAllByProductName(String productName);
+    Optional<ProductDoc> findAllByProductName(String productName);
 
-    public ProductDoc findById(String productId);
+    ProductDoc findById(String productId);
 }

@@ -76,7 +76,7 @@ public class OrderApiService {
                         .build()).collect(Collectors.toList());
     }
 
-    public String getGuestId(OrderRequest request) throws GuestExistException {
+    public String getGuestId(OrderRequest request) {
         GuestRequest guestRequest = request.getGuestRequest();
         GuestDoc guest = guestApiService.addGuest(guestRequest);
         return guest.getId().toString();

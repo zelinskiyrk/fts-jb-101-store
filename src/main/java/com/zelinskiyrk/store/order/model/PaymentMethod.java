@@ -6,7 +6,7 @@ import io.swagger.annotations.ApiModel;
 public enum PaymentMethod {
 
     CASH,
-    CARD;
+    CARD
 
 }
 

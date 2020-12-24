@@ -7,6 +7,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ProductSearchRequest {
-    @ApiParam(name = "productName", value = "Search products by name", required = false)
+    @ApiParam(name = "productName", value = "Search products by name")
     protected String productName = null;
 }

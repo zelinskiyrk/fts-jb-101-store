@@ -61,7 +61,6 @@ public class ProductApiService {
             throw new ProductNotExistException();
         }
 
-        ProductDoc oldDoc = productDocOptional.get();
 
         ProductDoc productDoc = ProductMapping.getInstance().getRequest().convert(request);
         productDoc.setId(request.getId());
