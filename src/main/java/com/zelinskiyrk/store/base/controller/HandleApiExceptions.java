@@ -116,8 +116,6 @@ public class HandleApiExceptions extends ResponseEntityExceptionHandler {
         return buildResponseEntity(ErrorResponse.of("The selected delivery time is not possible. Choose another time", HttpStatus.BAD_REQUEST));
     }
 
-    //TODO
-    // Написать эксепшен для случаев когда отправляется запрос на изменение количества продуктов, при том что продукта в корзине нет
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<Object> Exception(Exception ex, WebRequest request) {

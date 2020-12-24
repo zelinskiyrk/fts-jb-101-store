@@ -3,7 +3,6 @@ package com.zelinskiyrk.store.guest.controller;
 import com.zelinskiyrk.store.base.api.response.OkResponse;
 import com.zelinskiyrk.store.guest.api.request.GuestRequest;
 import com.zelinskiyrk.store.guest.api.response.GuestResponse;
-import com.zelinskiyrk.store.guest.exception.GuestExistException;
 import com.zelinskiyrk.store.guest.exception.GuestNotExistException;
 import com.zelinskiyrk.store.guest.mapping.GuestMapping;
 import com.zelinskiyrk.store.guest.routes.GuestApiRoutes;
@@ -14,8 +13,6 @@ import org.bson.types.ObjectId;
 import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 
 @RestController
@@ -30,7 +27,7 @@ public class GuestApiController {
             @ApiResponse(code = 200, message = "Success"),
             @ApiResponse(code = 400, message = "Guest already exist")
     })
-    public OkResponse<GuestResponse> addGuest(@RequestBody GuestRequest request) throws GuestExistException {
+    public OkResponse<GuestResponse> addGuest(@RequestBody GuestRequest request) {
         return OkResponse.of(GuestMapping.getInstance().getResponse().convert(
                 guestApiService.addGuest(request)));
     }
@@ -46,19 +43,6 @@ public class GuestApiController {
             @PathVariable ObjectId id) throws ChangeSetPersister.NotFoundException {
         return OkResponse.of(GuestMapping.getInstance().getResponse().convert(
                 guestApiService.findById(id).orElseThrow(ChangeSetPersister.NotFoundException::new)
-        ));
-    }
-
-    @GetMapping(GuestApiRoutes.ROOT)
-    @ApiOperation(value = "Search all guests", notes = "Use this if you want to list all guests.")
-    @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Success")
-    })
-    public OkResponse<List<GuestResponse>> search(
-//            @ModelAttribute SearchRequest request
-    ) {
-        return OkResponse.of(GuestMapping.getInstance().getSearch().convert(
-                guestApiService.search()
         ));
     }
 

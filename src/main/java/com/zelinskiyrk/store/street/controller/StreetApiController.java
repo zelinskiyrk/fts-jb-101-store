@@ -1,10 +1,8 @@
 package com.zelinskiyrk.store.street.controller;
 
 import com.zelinskiyrk.store.base.api.response.OkResponse;
-import com.zelinskiyrk.store.base.api.response.SearchResponse;
 import com.zelinskiyrk.store.city.exception.CityNotExistException;
 import com.zelinskiyrk.store.street.api.request.StreetRequest;
-import com.zelinskiyrk.store.street.api.request.StreetSearchRequest;
 import com.zelinskiyrk.store.street.api.response.StreetResponse;
 import com.zelinskiyrk.store.street.exception.StreetExistException;
 import com.zelinskiyrk.store.street.exception.StreetNotExistException;
@@ -17,6 +15,8 @@ import org.bson.types.ObjectId;
 import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 @RestController
@@ -55,12 +55,13 @@ public class StreetApiController {
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Success")
     })
-    public OkResponse<SearchResponse<StreetResponse>> search(
-            @ModelAttribute StreetSearchRequest request
+    public OkResponse<List<String>> search(
+            @ModelAttribute StreetRequest request
     ) {
-        return OkResponse.of(StreetMapping.getInstance().getSearch().convert(
-                streetApiService.search(request)
-        ));
+//        return OkResponse.of(StreetMapping.getInstance().getSearch().convert(
+//                streetApiService.search(request)
+//        ));
+        return OkResponse.of(streetApiService.search(request));
     }
 
     @PutMapping(StreetApiRoutes.ADMIN_BY_ID)
