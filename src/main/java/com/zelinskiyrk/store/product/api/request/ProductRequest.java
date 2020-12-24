@@ -7,6 +7,7 @@ import lombok.Setter;
 import org.bson.types.ObjectId;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 @Getter
@@ -22,5 +23,5 @@ public class ProductRequest {
     private Float fats;
     private Float carbohydrates;
     private Float calories;
-    private ArrayList<CityPriceModel> prices = new ArrayList<CityPriceModel>();
+    private List<CityPriceModel> prices = new ArrayList<>();
 }

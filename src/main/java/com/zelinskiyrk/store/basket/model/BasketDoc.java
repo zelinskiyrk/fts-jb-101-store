@@ -18,7 +18,7 @@ import java.util.List;
 public class BasketDoc {
     @Id
     private ObjectId id;
-    private List<ProductBasketDoc> products = new ArrayList<ProductBasketDoc>();
+    private List<ProductBasketDoc> products = new ArrayList<>();
     private String sessionId;
     private Integer orderPrice;
     private Integer deliveryPrice;

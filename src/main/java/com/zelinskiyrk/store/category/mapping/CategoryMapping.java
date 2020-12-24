@@ -45,7 +45,7 @@ public class CategoryMapping {
     }
 
     public static class SearchMapping extends BaseMapping<List<CategoryDoc>, List<CategoryResponse>> {
-        private ResponseMapping responseMapping = new ResponseMapping();
+        private final ResponseMapping responseMapping = new ResponseMapping();
 
         @Override
         public List<CategoryResponse> convert(List<CategoryDoc> categoryDocs) {

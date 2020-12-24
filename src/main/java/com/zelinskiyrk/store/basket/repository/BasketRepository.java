@@ -10,7 +10,7 @@ import java.util.Optional;
 
 @Repository
 public interface BasketRepository extends MongoRepository<BasketDoc, ObjectId> {
-    public Optional<BasketDoc> findBySessionId(String sessionId);
+    Optional<BasketDoc> findBySessionId(String sessionId);
 
-    public void deleteBySessionIdIn(List<String> ids);
+    void deleteBySessionIdIn(List<String> ids);
 }

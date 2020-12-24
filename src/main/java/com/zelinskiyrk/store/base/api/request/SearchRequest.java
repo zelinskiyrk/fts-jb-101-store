@@ -9,6 +9,6 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class SearchRequest {
-    @ApiParam(name = "query", value = "Search by fields", required = false)
+    @ApiParam(name = "query", value = "Search by fields")
     protected String query = null;
 }

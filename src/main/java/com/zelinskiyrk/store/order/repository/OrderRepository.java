@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface OrderRepository extends MongoRepository<OrderDoc, ObjectId> {
-    public OrderDoc findByOrderNumber(Integer orderNumber);
+    OrderDoc findByOrderNumber(Integer orderNumber);
 }

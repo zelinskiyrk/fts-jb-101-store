@@ -12,7 +12,6 @@ import com.zelinskiyrk.store.product.model.ProductDoc;
 import com.zelinskiyrk.store.product.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.bson.types.ObjectId;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.session.data.mongo.MongoSession;
 import org.springframework.stereotype.Service;
@@ -30,9 +29,10 @@ public class BasketApiService {
     private final BasketRepository basketRepository;
     private final ProductRepository productRepository;
     private final CityRepository cityRepository;
+    private final MongoTemplate mongoTemplate;
 
-    @Autowired
-    MongoTemplate mongoTemplate;
+//    @Autowired
+//    MongoTemplate mongoTemplate;
 
 
     public BasketDoc getBasket(HttpServletRequest servletRequest) {
@@ -211,7 +211,7 @@ public class BasketApiService {
 
     private List<String> getBasketSessionIds() {
         List<BasketDoc> allBaskets = basketRepository.findAll();
-        ArrayList<String> basketSession = new ArrayList<>();
+        List<String> basketSession = new ArrayList<>();
         for (BasketDoc basket : allBaskets
         ) {
             basketSession.add(basket.getSessionId());
